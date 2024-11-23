@@ -14,36 +14,29 @@ m =   6		m * m =     36
 m =  25		m * m =    625
 */
 #include<stdio.h>
-int square = 0;
-int count = 0;
-int fun(int i)
+int is_isomorphic(int n)
 {
-        int r=i;
-        count = 0;
-        while(r != 0)
-        {
-            r/=10;
-            count++;
-        }
-        square = i*i-i;
-        for ( ;count>0;count--)
-        {
-            if (square % 10 != 0)
-            {
-                return 0;
-            }
-            square /= 10;
-        }
-        return 1;
+  int o_n = n;
+  int mag = 1;
+  while(o_n > 0)
+  {
+    mag *= 10;
+    o_n /= 10;
+  }
+
+  int n_square = n * n;
+
+  return n_square % mag == n ? 1 : 0;
 }
+
 int main()
 {
-    int n,m;
+    int n, m;
     printf("请输入两个端点：");
     scanf("%d,%d",&n,&m);
-    for( ;n<=m;n++)
+    for( ; n<=m; n++)
     {
-        if(fun(n)==1)
+        if(is_isomorphic(n) == 1)
             printf("m = %3d\t\tm * m = %6d\n",n,n*n);
     }
     return 0;
